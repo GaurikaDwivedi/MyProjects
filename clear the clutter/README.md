@@ -1,15 +1,3 @@
-# Demo Folder
-
-This folder contains a collection of random files for demonstration purposes.
-
-## Files:
-
-1. **1.txt:** This is a sample text file.
-
-2. **w.jpg:** An example image file.
-
-3. **index.html:** A basic HTML file.
-
 ## Main Python Script:
 
 - **main.py:** The main Python script for your project.
