@@ -38,18 +38,19 @@ class UserView(APIView):
         #print(request.headers)
         token = request.headers.get('Authorization')
         token = token.split('Bearer ')[1] 
-        print("Hi",token)
         try:
             # Decode the token
             decoded_token = AccessToken(token)
-            
+            user_id = decoded_token['user_id']
+            user = User.objects.get(id=user_id)
             # Extract payload data
             payload = {
-                'user_id': decoded_token.payload['user_id'],  # Example: extracting user ID
-                'exp': decoded_token.payload['exp'],  # Example: extracting expiry time
+                'user_id': user.id,
+                'username': user.name,  # Assuming name is used for username
+                'email': user.email,
+                'exp': decoded_token.payload['exp'],  # Token expiration time
                 # Add more fields as needed
             }
-            print(payload['user_id'])
             return Response(payload, status=status.HTTP_200_OK)
         except Exception as e:
             # Handle decoding errors
